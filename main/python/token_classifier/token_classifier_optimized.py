@@ -37,25 +37,16 @@ class TokenClassifierOptimized(TokenClassifier):
         # CONFIGURATION STEPS
         #
         #####################################################################
-        # Two different approaches
-        # Only labeling the first subword of the word or labeling the whole word
-        # https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/token_classification.ipynb#scrollTo=a20bKF3OEeaP
-        # Doc tutorial
-        # Labeling only the first subword
-        # https://huggingface.co/docs/transformers/tasks/token_classification
-
-        # https://discuss.huggingface.co/t/change-label-names-on-inference-api/3063
         self.dataset_path = dataset_path
         self.model_path = model_path
         self.label_list = label_list
         self.converters_col = converters_col
 
         self.label_all_tokens = True
-        os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"  # see issue #152
+        os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"  
         os.environ["CUDA_VISIBLE_DEVICES"] = str(cuda_id)
 
         # Metric used for token classification
-        # TODO change the metric
         self.metric = load_metric("seqeval")
 
         self.model_pretrained = model_pretrained
@@ -90,8 +81,6 @@ class TokenClassifierOptimized(TokenClassifier):
         self.sweep_id = wandb.sweep(
             self.sweep_config, project=wandb_project_name
         )
-
-        #######################################################################
 
         self.task = "ner"  # Should be one of "ner", "pos" or "chunk"
         print("Lets the training begin!")
@@ -163,7 +152,6 @@ class TokenClassifierOptimized(TokenClassifier):
         tokenized_datasets_train = self.preprocess_datasets(self.dataset_path["train"])
 
         tokenized_datasets_test = self.preprocess_datasets(self.dataset_path["validation"])
-        # tokenized_datasets = self.preprocess_datasets(self.dataset_path)
 
         self.model = AutoModelForTokenClassification.from_pretrained(
             self.model_pretrained, config=self.config, ignore_mismatched_sizes=True
@@ -184,7 +172,7 @@ class TokenClassifierOptimized(TokenClassifier):
             callbacks=[EarlyStoppingCallback(early_stopping_patience=4)]
         )
         print("It is time to process!")
-        # trainer.predict()
+        
         trainer.train()
         print("Training done")
 

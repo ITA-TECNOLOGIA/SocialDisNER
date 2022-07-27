@@ -6,7 +6,7 @@ import pandas as pd
 
 from disease_classifier.filter.zero_shot_classifier import ZeroShotClassifier
 
-ABBREVIATIONS_FILE_PATH = os.path.join(config.PROJECT_PATH, 'dictionaries/siglas_medicas_es.csv') #en realidad, están en español
+ABBREVIATIONS_FILE_PATH = os.path.join(config.PROJECT_PATH, 'dictionaries/siglas_medicas_es.csv') 
 DICTIONARY_FILE_PATH = os.path.join(config.PROJECT_PATH, '<Dictionary file path>')
 
 class TestFilterZeroShot(unittest.TestCase):

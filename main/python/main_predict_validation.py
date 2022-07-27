@@ -16,7 +16,7 @@ def results_disease_predictor(
     dictionary=config.VAL_GAZETTEER_ES_PATH,
 ):
     """
-    Function uses to get results for the Validation Phase
+        Results for the Validation Phase
     """
 
     if isinstance(model, list):
