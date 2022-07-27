@@ -1,0 +1,18 @@
+
+src/main/logs/*
+*/logs
+
+__pycache__
+.ipynb_checkpoints/
+
+main/corpus/*
+wandb/*
+
+main/python/token_classifier/dictionary/__pycache__/*
+main/python/token_classifier/__pycache__/*
+main/python/token_classifier/ner/__pycache__/*
+main/python/token_classifier_irene/*
+main/python/token_classifier/filter/__pycache__/*
+
+# Uncomment when needed
+main/nb/*.ipynb

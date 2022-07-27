@@ -1,0 +1,14 @@
+transformers==4.19.0 #pip install transformers #pip install transformers[sentencepiece]
+datasets==2.2.1
+#torch==1.7.1 #conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.1 -c pytorch #Check cuda drivers version
+spacy==3.3.0 ##!pip install -U spacy #!pip show spacy #python -m spacy download 'es_core_news_md'
+wandb==0.12.17  #pip install wandb
+#torchvision==0.8.2
+#torchaudio==0.7.2
+#cudatoolkit=10.1
+seqeval==1.2.2
+pandas==1.2.4
+tqdm==4.64.0
+demoji==1.1.0
+wordninja==2.0.0
+wordcloud==1.8.2.2
