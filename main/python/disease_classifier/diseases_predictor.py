@@ -12,9 +12,9 @@ import demoji
 class DiseasesPredictor:
     """
     This class gather all the available forms for predicting diseases in a tweet:
-        - Dictionary predictions
+        - Gazetteer predictions
         - Transformer models predictions
-        - Zero-shot classification
+        - Zero-shot filtering
     """
 
     def __init__(

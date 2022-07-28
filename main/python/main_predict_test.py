@@ -16,7 +16,7 @@ def results_disease_predictor(
     dictionary=config.TEST_GAZETTEER_ES_PATH,
 ):
     """
-    Function uses to get results for the Test Phase
+        Results for the Test Phase
     """
     if isinstance(model, list):
         model_name = f"run_combination{len(model)}_final"

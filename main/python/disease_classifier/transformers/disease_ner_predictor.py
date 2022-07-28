@@ -13,7 +13,7 @@ class DiseaseNerPredictor():
 
     def ner_predict(self, sentence, tweet_id):
         """
-        Function which uses transformer models to predict 
+        Extracts entities from text using the finetuned model desired
         """
         sentence = sentence.strip()
         entities_list = list()

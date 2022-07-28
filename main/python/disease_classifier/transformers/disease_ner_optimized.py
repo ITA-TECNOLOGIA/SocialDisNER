@@ -45,7 +45,7 @@ class DiseaseNER(TokenClassifierOptimized):
 
     def create_ner_tag_column(self,row):
         """
-        Auxiliarty function to change labels for numbers
+        Auxiliarty function to map labels into indexes
         """
         ner_tag_list = list()
         list_tags_bio = row['BIO_tags']

@@ -78,13 +78,14 @@ def BILOU_to_BIO(bilou_tags):
         elif tag == 'U-ENFERMEDAD':
             BIO_tags.append('B-ENFERMEDAD')         
         else:
-            BIO_tags.append('-') # before: BIO_tags.append('O') --> Seems that there have been some kind of error/misalignment
+            BIO_tags.append('-') #  Use to arise misalignment errors (mainly in hashtag entities)
             
     return BIO_tags
 
 def tweets_to_formatted_df(filepath_ner_mentions, texts_folder, save_output_path=None):
     """
-    
+        Loads mentions, tweets and merges everything into BIO format.
+        Generates a CSV file.
     """
     df = pd.read_csv(filepath_ner_mentions, delimiter="\t")
     # Merge MENTIONS with its corresponding texts

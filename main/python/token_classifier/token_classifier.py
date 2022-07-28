@@ -42,7 +42,6 @@ class TokenClassifier():
         # Labeling only the first subword
         # https://huggingface.co/docs/transformers/tasks/token_classification
 
-        # https://discuss.huggingface.co/t/change-label-names-on-inference-api/3063
         self.dataset_path=dataset_path
         self.model_path=model_path
         self.converters_col=converters_col
@@ -76,9 +75,6 @@ class TokenClassifier():
         #   TRAINING ARGUMENTS
         #
         ################################################################
-        # Traning arguments according to the summarization example
-        # HOW TO TRAIN BERT BASED ARCHITECTURE MODEL
-        # https://www.freecodecamp.org/news/getting-started-with-ner-models-using-huggingface/
         self.args = TrainingArguments(
             output_dir=self.output_dir,
             evaluation_strategy='steps',
@@ -129,7 +125,6 @@ class TokenClassifier():
         #
         #####################################################################
         #wandb.login()
-
         #run = wandb.init(project=f"project-{str(self.model_base_name)}".replace("/","-"), entity="itainnova",reinit=True)
 
         #os.environ["WANDB_PROJECT"]=f"project-{str(self.model_base_name)}".replace("/","-")
@@ -143,7 +138,6 @@ class TokenClassifier():
         tokenized_datasets_train = self.preprocess_datasets(self.dataset_path["train"])
 
         tokenized_datasets_test = self.preprocess_datasets(self.dataset_path["validation"])
-        # tokenized_datasets = self.preprocess_datasets(self.dataset_path)
 
         self.model = AutoModelForTokenClassification.from_pretrained(
             self.model_pretrained, config=self.config, ignore_mismatched_sizes=True
@@ -163,32 +157,8 @@ class TokenClassifier():
             compute_metrics=self.compute_metrics,
             callbacks=[EarlyStoppingCallback(early_stopping_patience=config.PATIENCE)]
         )
-        print("It is time to process!")
-        # trainer.predict()
-
-        # tokenized_datasets = self.preprocess_datasets(self.dataset_path) #TODO Checkout 'split' argument
-        # self.model = AutoModelForTokenClassification.from_pretrained(
-        #    self.model_pretrained, config=self.config,ignore_mismatched_sizes=True)
-        # print("Preprocess done!")
-
-        # # Data collator is used to putting together all the examples inside a batch
-        # data_collator = DataCollatorForTokenClassification(self.tokenizer)
-
-        # print("Preparing arguments")
-        # trainer = Trainer(
-        #     self.model,
-        #     self.args,
-        #     train_dataset=tokenized_datasets["train"],
-        #     eval_dataset=tokenized_datasets["test"],
-        #     data_collator=data_collator,
-        #     tokenizer=self.tokenizer,
-        #     compute_metrics=self.compute_metrics,
-        #     callbacks=[EarlyStoppingCallback(early_stopping_patience=4)]
-
-        #     )
 
         print("It is time to process!")
-        # trainer.predict()
         trainer.train()
         print("Training done")
 
@@ -247,11 +217,8 @@ class TokenClassifier():
                 - `ner_tags`: a `list` of classification labels (`int`). Full tagset with indices:
         ```python
         {'O': 0, 'B-PER': 1, 'I-PER': 2, 'B-ORG': 3, 'I-ORG': 4, 'B-LOC': 5, 'I-LOC': 6, 'B-MISC': 7, 'I-MISC': 8}
-        ```
-                
-                
+        ```     
         """
-        # https://huggingface.co/datasets/conll2003#data-fields
         full_dataset_df = pd.read_csv(dataset_path, converters=self.converters_col, encoding='utf8')
         full_dataset_df['ner_tags'] =full_dataset_df.apply(
                     lambda row: self.create_ner_tag_column(row), axis=1)
@@ -272,7 +239,7 @@ class TokenClassifier():
 
     def create_ner_tag_column(self, row):
         """
-        Auxiliarty function
+        Auxiliarty function to be implemented in each use case
         """
         pass
 

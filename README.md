@@ -3,7 +3,7 @@
 
 [Task info](https://temu.bsc.es/socialdisner/)
 
-The source code is organized as follows:
+The main source code is organized as follows:
 
 /nb:
 Notebooks used for data checking
@@ -24,6 +24,10 @@ Command line scripts to launch training and predictions
 
 /test:
 Unitary tests
+
+
+Models and files paths have to be set up in the python/config.py script (full paths recommended).
+Wandb functionality has been deactivated.
 
 ----------
 # Paper
