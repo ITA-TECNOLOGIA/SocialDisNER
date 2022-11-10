@@ -31,7 +31,15 @@ Wandb functionality has been deactivated.
 
 ----------
 # Paper
-TBD
+[ITAINNOVA at SocialDisNER: A Transformers cocktail for disease identification in social media in Spanish](https://aclanthology.org/2022.smm4h-1.21/)
+
+<p align="center">
+ <img src="images/system_diagram_vertical.png" alt="System architecture" width="250"/>
+</p>
+
+# More info at: 
+[Biomedical Text Mining YOUTUBE channel](https://youtu.be/Z1BJCHkhSBo)
+
 
 ----------
 # Contributors
